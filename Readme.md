@@ -1,4 +1,4 @@
-A React App that lets you create, play and view your quizzes.
+A MERN App that lets you create, play and view your quizzes.
 Visit the app by going to
 "quizeer.herokuapp.com"
 
