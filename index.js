@@ -28,7 +28,14 @@ mongoose
   .then(() => console.log("Connection Established With MongoDb Database"))
   .catch((err) => console.log(err.message));
 
+server.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://quizeer.herokuapp.com/');
+  next();
+})
+
 server.use(cors());
+
+
 
 server.use(express.json());
 
