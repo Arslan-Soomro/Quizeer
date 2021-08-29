@@ -28,7 +28,7 @@ mongoose
   .then(() => console.log("Connection Established With MongoDb Database"))
   .catch((err) => console.log(err.message));
 
-//server.use(cors());//Don't Need It Anymore
+server.use(cors());
 
 server.use(express.json());
 
