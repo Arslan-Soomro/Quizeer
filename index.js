@@ -1,7 +1,10 @@
 const express = require("express");
+const server = express();
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const apiRouter = require("./routes/api");
 require('dotenv').config();
 
 
@@ -15,7 +18,7 @@ require('dotenv').config();
 //api/add For Patching Only One Quiz, _id and _password are important in body, _id for identifying quiz and _password for accessing quiz, _password is prev password and password is the new password for the quiz
 //admin For Editing Data
 
-const server = express();
+
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -24,10 +27,6 @@ mongoose
   })
   .then(() => console.log("Connection Established With MongoDb Database"))
   .catch((err) => console.log(err.message));
-
-const apiRouter = require("./routes/api");
-
-const PORT = process.env.PORT || 8080;
 
 //server.use(cors());//Don't Need It Anymore
 
@@ -39,6 +38,12 @@ server.use(express.static(path.join(__dirname, 'build')));
 //Serving React Here
 server.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
+const PORT = process.env.PORT || 8080;
+
+server.get("/", (req, res) => {
+  res.send("<h1>React App</h1>");
 })
 
 server.listen(PORT, () => {
